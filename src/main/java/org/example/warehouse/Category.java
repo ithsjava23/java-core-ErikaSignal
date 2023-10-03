@@ -9,6 +9,7 @@ public class Category {
     }
 
     public Category getName() {
-        return  null;
+        Category category = new Category();
+        return category;
     }
 }
