@@ -32,7 +32,7 @@ public class Warehouse {
 
     public List<ProductRecord> getProducts() {
         List<ProductRecord> addedProduct = new ArrayList<>();
-        return null;
+        return addedProduct;
     }
 
     public ProductRecord addProduct(UUID uuidMilk, String milk, Category dairy, BigDecimal bigDecimal) {
