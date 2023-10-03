@@ -4,16 +4,26 @@ import java.math.BigDecimal;
 import java.util.*;
 
 public class Warehouse {
-    private Warehouse(List<String> getChangedProducts, List<String> getProductsGroupedByCategories) {
+    private String myStore;
+    private Warehouse() {
         this.getChangedProducts = getChangedProducts;
         this.getProductsGroupedByCategories = getProductsGroupedByCategories;
     }
 
-    public static Warehouse getInstance(String myStore) {
-        return null;
+    private Warehouse(String myStore) {
+        this.myStore = myStore;
     }
+
+    public static Warehouse getInstance(String myStore) {
+        return new Warehouse(myStore);
+    }
+
     public static Warehouse getInstance(){
-        return null;
+        Warehouse createWarehouse = new Warehouse();
+        return createWarehouse;
+    }
+    public String getName() {
+        return myStore;
     }
 
     public boolean isEmpty() {
@@ -30,13 +40,7 @@ public class Warehouse {
     }
 
     public Optional<ProductRecord> getProductById(UUID uuid) {
-        ProductRecord[] products = new ProductRecord[0];
-        for (ProductRecord product : products) {
-            if (product.getId().equals(uuid)) {
-                return Optional.of(product);
-            }
-        }
-        return Optional.empty();
+        return null;
     }
 
     public void updateProductPrice(UUID uuid, BigDecimal bigDecimal) {

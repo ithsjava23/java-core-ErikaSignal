@@ -5,13 +5,10 @@ public class Category {
     }
 
     public static Category of(String name) {
-        Category category = new Category();
-        return new Category();
+        return null;
     }
 
     public Category getName() {
-        Category name = new Category();
-        if(name == null) throw new IllegalArgumentException();
-        else return name;
+        return  null;
     }
 }
