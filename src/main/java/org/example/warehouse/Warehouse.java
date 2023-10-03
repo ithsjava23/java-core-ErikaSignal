@@ -27,12 +27,13 @@ public class Warehouse {
     }
 
     public boolean isEmpty() {
-        return getProducts().isEmpty();
+        return getProducts().isEmpty(); //ok
     }
 
     public List<ProductRecord> getProducts() {
         List<ProductRecord> addedProduct = new ArrayList<>();
-        return addedProduct;
+        if (addedProduct == null) throw new IllegalArgumentException();
+        else return addedProduct;
     }
 
     public ProductRecord addProduct(UUID uuidMilk, String milk, Category dairy, BigDecimal bigDecimal) {
@@ -46,10 +47,10 @@ public class Warehouse {
     public void updateProductPrice(UUID uuid, BigDecimal bigDecimal) {
     }
 
-    public List<String> getChangedProducts = new ArrayList<>() {
+    public List<ProductRecord> getChangedProducts = new ArrayList<>() {
     };
 
-    public List<String> getProductsGroupedByCategories = new ArrayList<>() {
+    public List<ProductRecord> getProductsGroupedByCategories = new ArrayList<>() {
     };
 
     public List<ProductRecord> getProductsBy(Category meat) {
