@@ -6,10 +6,7 @@ import java.util.*;
 public class Warehouse {
     private String myStore;
 
-    private Warehouse() {
-        this.getChangedProducts = getChangedProducts;
-        this.getProductsGroupedByCategories = getProductsGroupedByCategories;
-    }
+    private Warehouse() {}
 
     private Warehouse(String myStore) {
         this.myStore = myStore;
@@ -20,42 +17,41 @@ public class Warehouse {
     }
 
     public static Warehouse getInstance(){
-        Warehouse createWarehouse = new Warehouse();
-        return createWarehouse;
+        return new Warehouse();
     }
     public String getName() {
         return myStore;
     }
 
     public boolean isEmpty() {
-        return getProducts().isEmpty(); //ok
+        return getProducts().isEmpty();
     }
+
+    private final List<ProductRecord> products = new ArrayList<>();
 
     public List<ProductRecord> getProducts() {
-        List<ProductRecord> addedProduct = new ArrayList<>();
-        if (addedProduct == null) throw new IllegalArgumentException();
-        else return addedProduct;
+        return products;
     }
 
-    public ProductRecord addProduct(UUID uuidMilk, String milk, Category dairy, BigDecimal bigDecimal) {
-        return null;
+    public ProductRecord addProduct(UUID uuid, String name, Category category, BigDecimal price) {
+        ProductRecord products = new ProductRecord(uuid, name, category, price);
+        ProductRecord.add(products);
+        return products;
     }
 
     public Optional<ProductRecord> getProductById(UUID uuid) {
         return Optional.empty();
     }
 
-    public void updateProductPrice(UUID uuid, BigDecimal bigDecimal) {
+    public void updateProductPrice(UUID uuid, BigDecimal price) {
 
     }
 
-    public List<ProductRecord> getChangedProducts = new ArrayList<>() {
-    };
+    public List<ProductRecord> getChangedProducts = new ArrayList<>();
 
-    public List<ProductRecord> getProductsGroupedByCategories = new ArrayList<>() {
-    };
+    public List<ProductRecord> getProductsGroupedByCategories = new ArrayList<>();
 
-    public List<ProductRecord> getProductsBy(Category meat) {
+    public List<ProductRecord> getProductsBy(Category category) {
         return null;
     }
 
