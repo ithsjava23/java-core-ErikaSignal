@@ -34,9 +34,9 @@ public class Warehouse {
     }
 
     public ProductRecord addProduct(UUID uuid, String name, Category category, BigDecimal price) {
-        ProductRecord products = new ProductRecord(uuid, name, category, price);
-        ProductRecord.add(products);
-        return products;
+        ProductRecord product = new ProductRecord(uuid, name, category, price);
+        products.add(product);
+        return product;
     }
 
     public Optional<ProductRecord> getProductById(UUID uuid) {
