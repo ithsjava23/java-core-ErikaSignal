@@ -10,6 +10,14 @@ public class ProductRecord {
     private BigDecimal price;
     private Object id;
 
+    private ProductRecord(UUID uuid, String name, Category category, BigDecimal price, Object id) {
+        this.uuid = uuid;
+        this.name = name;
+        this.category = category;
+        this.price = price;
+        this.id = id;
+    }
+
     public UUID uuid() {
         return null;
     }

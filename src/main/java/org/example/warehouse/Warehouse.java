@@ -5,6 +5,7 @@ import java.util.*;
 
 public class Warehouse {
     private String myStore;
+
     private Warehouse() {
         this.getChangedProducts = getChangedProducts;
         this.getProductsGroupedByCategories = getProductsGroupedByCategories;
@@ -41,10 +42,11 @@ public class Warehouse {
     }
 
     public Optional<ProductRecord> getProductById(UUID uuid) {
-        return null;
+        return Optional.empty();
     }
 
     public void updateProductPrice(UUID uuid, BigDecimal bigDecimal) {
+
     }
 
     public List<ProductRecord> getChangedProducts = new ArrayList<>() {
