@@ -34,18 +34,8 @@ public class ProductRecord {
         return uuid;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
     public void setPrice(BigDecimal price) {
         this.price = price;
-    }
-
-    public static void add(ProductRecord products) {
     }
 
     public UUID uuid() {
@@ -58,14 +48,6 @@ public class ProductRecord {
 
     public Category category() {
         return null;
-    }
-
-    public Object getId() {
-        return id;
-    }
-
-    public void setId(Object id) {
-        this.id = id;
     }
 
     public Object getCategory() {

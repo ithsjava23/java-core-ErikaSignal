@@ -34,20 +34,23 @@ public class Warehouse {
     public List<ProductRecord> getProducts() {
         return Collections.unmodifiableList(products);
     }
+
     public List<ProductRecord> getChangedProducts() {
         return new ArrayList<>(changedProducts);
     }
+
     public List<ProductRecord> getProductsBy(Category category) {
         return products.stream()
                 .filter(product -> product.getCategory().equals(category))
                 .collect(Collectors.toList());
     }
+
     public Map<Category, List<ProductRecord>> getProductsGroupedByCategories() {
         Map<Category, List<ProductRecord>> groupedProducts = new HashMap<>();
-        for (ProductRecord product : products) {
+        products.forEach(product -> {
             Category category = (Category) product.getCategory();
             groupedProducts.computeIfAbsent(category, k -> new ArrayList<>()).add(product);
-        }
+        });
         return groupedProducts;
     }
 
@@ -55,10 +58,10 @@ public class Warehouse {
         if (name == null || name.trim().isEmpty()) {
             throw new IllegalArgumentException("Product name can't be null or empty.");
         }
-        if (category == null) { //nått fel
+        if (category == null) {
             throw new IllegalArgumentException("Category can't be null.");
         }
-        if (price == null) { //nått fel
+        if (price == null) {
             price = BigDecimal.ZERO;
         }
         if (getProductById(uuid).isPresent()) {
