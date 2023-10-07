@@ -9,7 +9,7 @@ public class ProductRecord {
     private final UUID uuid;
     private final String name;
     private final Category category;
-    private final BigDecimal price;
+    private BigDecimal price;
 
     public ProductRecord(UUID uuid, String name, Category category, BigDecimal price) {
         this.uuid = uuid;
@@ -40,6 +40,9 @@ public class ProductRecord {
 
     public BigDecimal getPrice() {
         return price;
+    }
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 
     public static void add(ProductRecord products) {

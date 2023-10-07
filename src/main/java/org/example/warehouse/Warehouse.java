@@ -28,19 +28,23 @@ public class Warehouse {
     }
 
     private final List<ProductRecord> products = new ArrayList<>();
+    private final List<ProductRecord> changedProducts = new ArrayList<>();
 
     public List<ProductRecord> getProducts() {
-        return products;
+        return new ArrayList<>(products);
+    }
+    public List<ProductRecord> getChangedProducts() {
+        return new ArrayList<>(changedProducts);
     }
 
     public ProductRecord addProduct(UUID uuid, String name, Category category, BigDecimal price) {
         if (name == null || name.trim().isEmpty()) {
             throw new IllegalArgumentException("Product name can't be null or empty.");
         }
-        if (category == null) {
+        if (category == null) { //nått fel
             throw new IllegalArgumentException("Category can't be null.");
         }
-        if (price == null) {
+        if (price == null) { //nått fel
             price = BigDecimal.ZERO;
         }
         if (getProductById(uuid).isPresent()) {
@@ -57,8 +61,15 @@ public class Warehouse {
                 .findFirst();
     }
 
-    public void updateProductPrice(UUID uuid, BigDecimal price) {
-
+    public void updateProductPrice(UUID uuid, BigDecimal newPrice) {
+        Optional<ProductRecord> optionalProduct = getProductById(uuid);
+        if (optionalProduct.isPresent()) {
+            ProductRecord product = optionalProduct.get();
+            product.setPrice(newPrice);
+            changedProducts.add(product); // Track the changed product
+        } else {
+            throw new IllegalArgumentException("Product with that id not found.");
+        }
     }
 
     public List<ProductRecord> getChangedProducts = new ArrayList<>();
@@ -66,10 +77,6 @@ public class Warehouse {
     public List<ProductRecord> getProductsGroupedByCategories = new ArrayList<>();
 
     public List<ProductRecord> getProductsBy(Category category) {
-        return null;
-    }
-
-    public List<ProductRecord> getChangedProducts() {
         return null;
     }
 
