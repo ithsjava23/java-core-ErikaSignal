@@ -2,6 +2,7 @@ package org.example.warehouse;
 
 import java.math.BigDecimal;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Warehouse {
     private String myStore;
@@ -35,6 +36,11 @@ public class Warehouse {
     }
     public List<ProductRecord> getChangedProducts() {
         return new ArrayList<>(changedProducts);
+    }
+    public List<ProductRecord> getProductsBy(Category category) {
+        return products.stream()
+                .filter(product -> product.getCategory().equals(category))
+                .collect(Collectors.toList());
     }
     public Map<Category, List<ProductRecord>> getProductsGroupedByCategories() {
         Map<Category, List<ProductRecord>> groupedProducts = new HashMap<>();
@@ -76,10 +82,7 @@ public class Warehouse {
             product.setPrice(newPrice);
             changedProducts.add(product);
         } else {
-            throw new IllegalArgumentException("Product with that id not found.");
+            throw new IllegalArgumentException("Product with that id doesn't exist.");
         }
-    }
-    public List<ProductRecord> getProductsBy(Category category) {
-        return null;
     }
 }
