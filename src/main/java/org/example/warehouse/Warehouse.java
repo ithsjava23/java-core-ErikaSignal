@@ -31,10 +31,18 @@ public class Warehouse {
     private final List<ProductRecord> changedProducts = new ArrayList<>();
 
     public List<ProductRecord> getProducts() {
-        return new ArrayList<>(products);
+        return Collections.unmodifiableList(products);
     }
     public List<ProductRecord> getChangedProducts() {
         return new ArrayList<>(changedProducts);
+    }
+    public Map<Category, List<ProductRecord>> getProductsGroupedByCategories() {
+        Map<Category, List<ProductRecord>> groupedProducts = new HashMap<>();
+        for (ProductRecord product : products) {
+            Category category = (Category) product.getCategory();
+            groupedProducts.computeIfAbsent(category, k -> new ArrayList<>()).add(product);
+        }
+        return groupedProducts;
     }
 
     public ProductRecord addProduct(UUID uuid, String name, Category category, BigDecimal price) {
@@ -66,21 +74,12 @@ public class Warehouse {
         if (optionalProduct.isPresent()) {
             ProductRecord product = optionalProduct.get();
             product.setPrice(newPrice);
-            changedProducts.add(product); // Track the changed product
+            changedProducts.add(product);
         } else {
             throw new IllegalArgumentException("Product with that id not found.");
         }
     }
-
-    public List<ProductRecord> getChangedProducts = new ArrayList<>();
-
-    public List<ProductRecord> getProductsGroupedByCategories = new ArrayList<>();
-
     public List<ProductRecord> getProductsBy(Category category) {
-        return null;
-    }
-
-    public Map<Category, List<ProductRecord>> getProductsGroupedByCategories() {
         return null;
     }
 }
