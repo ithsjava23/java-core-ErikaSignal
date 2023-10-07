@@ -37,7 +37,9 @@ public class Warehouse {
         if (name == null || name.trim().isEmpty()) {
             throw new IllegalArgumentException("Product name can't be null or empty.");
         }
-
+        if (category == null) {
+            throw new IllegalArgumentException("Category can't be null.");
+        }
         ProductRecord product = new ProductRecord(uuid, name, category, price);
         products.add(product);
         return product;
