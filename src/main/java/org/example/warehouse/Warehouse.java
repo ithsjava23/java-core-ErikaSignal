@@ -40,13 +40,21 @@ public class Warehouse {
         if (category == null) {
             throw new IllegalArgumentException("Category can't be null.");
         }
+        if (price == null) {
+            price = BigDecimal.ZERO;
+        }
+        if (getProductById(uuid).isPresent()) {
+            throw new IllegalArgumentException("Product with that id already exists, use updateProduct for updates.");
+        }
         ProductRecord product = new ProductRecord(uuid, name, category, price);
         products.add(product);
         return product;
     }
 
     public Optional<ProductRecord> getProductById(UUID uuid) {
-        return Optional.empty();
+        return products.stream()
+                .filter(product -> product.getUuid().equals(uuid))
+                .findFirst();
     }
 
     public void updateProductPrice(UUID uuid, BigDecimal price) {
