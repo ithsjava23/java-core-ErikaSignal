@@ -34,6 +34,10 @@ public class Warehouse {
     }
 
     public ProductRecord addProduct(UUID uuid, String name, Category category, BigDecimal price) {
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException("Product name can't be null or empty.");
+        }
+
         ProductRecord product = new ProductRecord(uuid, name, category, price);
         products.add(product);
         return product;
