@@ -39,15 +39,15 @@ public class ProductRecord {
     }
 
     public UUID uuid() {
-        return null;
+        return uuid;
     }
 
     public BigDecimal price() {
-        return null;
+        return price;
     }
 
     public Category category() {
-        return null;
+        return category;
     }
 
     public Object getCategory() {
