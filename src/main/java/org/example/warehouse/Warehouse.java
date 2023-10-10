@@ -64,6 +64,9 @@ public class Warehouse {
         if (price == null) {
             price = BigDecimal.ZERO;
         }
+        if (uuid == null) {
+            uuid = UUID.randomUUID();
+        }
         if (getProductById(uuid).isPresent()) {
             throw new IllegalArgumentException("Product with that id already exists, use updateProduct for updates.");
         }
